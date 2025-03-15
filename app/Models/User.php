@@ -9,40 +9,39 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    protected $table = 'users';
+
     protected $fillable = [
-        'name',
+        'image',
+        'username',
+        'full_name',
         'email',
         'password',
+        'google_id',
+        'facebook_id',
+        'phone_number',
+        'address',
+        'role',
+        'code',
+        'point',
+        'banned',
+        'ban_reason',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected static function boot()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->kode = static::generateRandomCode();
+            $user->point = 0;
+        });
+    }
+
+    public static function generateRandomCode()
+    {
+        return mt_rand(10000, 99999);
     }
 }
