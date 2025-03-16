@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +17,14 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             MotorcycleListSeeder::class,
             HistorySeeder::class,
+            OtpSeeder::class,
+            PaymentGatewaySeeder::class,
+            NotificationSeeder::class,
+            GoogleSeeder::class,
+            FacebookSeeder::class,
             FinanceSeeder::class,
+            ChangeLogSeeder::class,
+            PaymentNotificationSeeder::class,
         ]);
     }
 }

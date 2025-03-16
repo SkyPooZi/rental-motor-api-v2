@@ -68,12 +68,12 @@ class ChangeLogRepositoryImplement extends Eloquent implements ChangeLogReposito
             $query->whereBetween('created_at', [$startDate, $endDate]);
         }
 
-        return $query->orderBy('created_at', 'desc')->get();
+        return $query->with(['user', 'history', 'motorcycleList', 'discount', 'review'])->orderBy('created_at', 'desc')->get();
     }
 
     public function findById($id)
     {
-        return $this->model->where('id', $id)->first();
+        return $this->model->with(['user', 'history', 'motorcycleList', 'discount', 'review'])->where('id', $id)->first();
     }
 
     public function insertData($data)

@@ -32,7 +32,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/facebook', 'redirectToFacebook')->name('redirectToFacebook');
         Route::get('/facebook/callback', 'handleFacebookCallback')->name('handleFacebookCallback');
     });
-}); 
+});
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::controller(\App\Http\Controllers\DiscountController::class)->name('discount.')->prefix('discount')->group(function () {

@@ -70,12 +70,12 @@ class PaymentNotificationRepositoryImplement extends Eloquent implements Payment
             $query->where('is_hidden', $isHidden);
         }
 
-        return $query->orderBy('created_at', 'desc')->get();
+        return $query->with(['user', 'history', 'motorcycleList', 'discount', 'review', 'changeLog'])->orderBy('created_at', 'desc')->get();
     }
 
     public function findById($id)
     {
-        return $this->model->where('id', $id)->first();
+        return $this->model->with(['user', 'history', 'motorcycleList', 'discount', 'review', 'changeLog'])->where('id', $id)->first();
     }
 
     public function insertData($data)

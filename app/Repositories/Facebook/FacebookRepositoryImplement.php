@@ -54,12 +54,12 @@ class FacebookRepositoryImplement extends Eloquent implements FacebookRepository
             $query->whereBetween('created_at', [$startDate, $endDate]);
         }
 
-        return $query->orderBy('created_at', 'desc')->get();
+        return $query->with(['user'])->orderBy('created_at', 'desc')->get();
     }
 
     public function findById($id)
     {
-        return $this->model->where('id', $id)->first();
+        return $this->model->with(['user'])->where('id', $id)->first();
     }
 
     public function insertData($data)

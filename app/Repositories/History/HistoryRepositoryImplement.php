@@ -157,12 +157,12 @@ class HistoryRepositoryImplement extends Eloquent implements HistoryRepository
             $query->where('cancellation_reason', 'like', "%$cancellationReason%");
         }
 
-        return $query->orderBy('created_at', 'desc')->get();
+        return $query->with(['user', 'motorcycleList', 'discount', 'review'])->orderBy('created_at', 'desc')->get();
     }
 
     public function findById($id)
     {
-        return $this->model->where('id', $id)->first();
+        return $this->model->with(['user', 'motorcycleList', 'discount', 'review'])->where('id', $id)->first();
     }
 
     public function insertData($data)
