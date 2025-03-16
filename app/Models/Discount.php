@@ -25,8 +25,8 @@ class Discount extends Model
     {
         parent::boot();
 
-        static::creating(function ($diskon) {
-            $diskon->kode_diskon = self::generateRandomCode();
+        static::creating(function ($discount) {
+            $discount->discount_code = self::generateRandomCode();
         });
     }
 

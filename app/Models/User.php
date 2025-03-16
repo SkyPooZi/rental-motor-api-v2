@@ -35,7 +35,7 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function ($user) {
-            $user->kode = static::generateRandomCode();
+            $user->code = static::generateRandomCode();
             $user->point = 0;
         });
     }
